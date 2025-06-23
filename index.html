@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varun Gopal - Senior Python Backend Developer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #121212; /* Very dark background, almost black */
+            color: #f0f0f0; /* Light off-white for main text */
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Smooth scrolling for nav links */
+        }
+        h1, h2, h3, .section-title, .terminal-prompt {
+            font-family: 'Fira Code', monospace; /* Monospaced font for headings/titles */
+        }
+        .header-bg {
+            background-color: #1a1a1a; /* Darker header for contrast */
+            border-bottom: 1px solid #333333;
+        }
+        .container-section {
+            background-color: #1e1e1e; /* Slightly lighter dark background for sections */
+            border-radius: 10px; /* Slightly less rounded */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+            margin-bottom: 3rem; /* More spacing between sections */
+            padding: 2.5rem; /* Consistent padding */
+            border: 1px solid #333333; /* Subtle dark border */
+        }
+        .section-title {
+            color: #8aff8a; /* Vibrant green for section titles */
+            font-size: 2.5rem; /* text-4xl equivalent, slightly larger */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #8aff8a;
+            padding-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em; /* More prominent letter spacing */
+        }
+        .skill-tag {
+            background-color: #333333; /* Darker background for tags */
+            color: #f0f0f0; /* White text on tags */
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem; /* Slightly larger skill tag font */
+            padding: 0.5rem 1rem;
+            border-radius: 6px; /* Slightly sharper corners for tags */
+            border: 1px solid #555555; /* Subtle border for definition */
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease, border-color 0.2s ease-in-out;
+        }
+        .skill-tag:hover {
+            background-color: #8aff8a; /* Green on hover */
+            color: #1e1e1e; /* Dark text on green hover */
+            border-color: #8aff8a; /* Green border on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        .bullet-point {
+            position: relative;
+            padding-left: 1.5rem; /* Space for custom bullet */
+            margin-bottom: 0.5rem;
+        }
+        .bullet-point::before {
+            content: ">"; /* Custom bullet character */
+            color: #8aff8a; /* Green bullet */
+            position: absolute;
+            left: 0;
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+        }
+        .job-title, .education-degree {
+            color: #ffcc00; /* Muted yellow/orange for job titles/degrees */
+            font-size: 1.75rem; /* text-3xl equivalent */
+            font-weight: 600; /* font-semibold */
+        }
+        .company-info, .institute-info {
+            color: #63b3ed; /* Sky blue for company/institute name */
+            font-size: 1.25rem; /* text-xl equivalent */
+            font-weight: 500;
+        }
+        .duration-location {
+            color: #b3b3b3; /* Gray for duration/location */
+            font-size: 1rem; /* text-base */
+        }
+        .nav-link {
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+            color: #f0f0f0;
+            padding: 0.75rem 1.25rem;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .nav-link:hover {
+            background-color: #333333;
+            color: #8aff8a;
+        }
+        .contact-icon-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #333333;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #f0f0f0;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+        .contact-icon-link:hover {
+            background-color: #8aff8a;
+            color: #1e1e1e;
+            transform: translateY(-3px);
+        }
+        .contact-icon-link svg {
+            fill: currentColor;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        /* Projects specific styling */
+        .project-card {
+            background-color: #282828; /* Slightly darker than main sections for project cards */
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #444444;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        }
+        .project-title {
+            color: #ffcc00; /* Orange for project titles */
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .project-meta {
+            color: #b3b3b3;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .project-description {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+        }
+        .project-links a {
+            color: #63b3ed;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+        }
+        .project-links a:last-child {
+            margin-right: 0;
+        }
+        /* Footer style */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px dashed #333333;
+            text-align: center;
+            color: #777777;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            .job-title, .education-degree {
+                font-size: 1.25rem;
+            }
+            .company-info, .institute-info {
+                font-size: 1rem;
+            }
+            .contact-icon-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            .contact-icon-link svg {
+                width: 1.2rem;
+                height: 1.2rem;
+            }
+            .main-heading {
+                font-size: 3rem;
+            }
+            .sub-heading {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-green-700 selection:text-white">
+    <nav class="header-bg py-4 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-white text-xl font-bold font-mono">VG</a>
+            <div class="flex space-x-4">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header-bg text-center py-12 sm:py-16 md:py-20 shadow-xl mb-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="terminal-prompt text-green-400 text-base mb-2">user@backend-server:~ $ whoami</p>
+            <h1 class="main-heading mb-3">
+                <span class="text-green-400">VARUN</span> GOPAL
+            </h1>
+            <p class="sub-heading mb-8">
+                Senior Python Backend Developer
+            </p>
+            <p class="text-gray-400 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+                Architecting, optimizing, and deploying robust backend systems with a focus on scalability, security, and performance.
+                Passionate about building the core logic that powers seamless digital experiences.
+            </p>
+            <div class="mt-10 flex flex-wrap justify-center gap-6">
+                <a href="#contact" class="contact-icon-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.003 5.884L10.333 11l-8.33 5.116zm0 12.232L10.333 13l-8.33 5.116zm0-14.116v12.232L22 12zm20 1.116l-11.667-7.116-10.333-6.002z" fill="currentColor"/></svg>
+                    Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/varun-gopal" target="_blank" rel="noopener noreferrer" class="contact-icon-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor"/></svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4">
+        <!-- About Me Section -->
+        <section id="about" class="container-section">
+            <h2 class="section-title">About Me</h2>
+            <p class="text-gray-300 leading-relaxed text-base">
+                Results-driven Python Backend Developer with 3+ years of professional experience in designing,
+                developing, and optimizing scalable APIs and backend systems. My expertise spans Django REST Framework,
+                MySQL query optimization, and secure API development. I have a proven track record of architecting
+                microservices, implementing robust authentication systems, and enabling real-time data synchronization.
+                I thrive in collaborative, cross-functional environments and am passionate about improving application
+                performance and delivering exceptional user experiences.
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="container-section">
+            <h2 class="section-title">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="section-subtitle mb-3">Languages & Frameworks:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Django REST Framework</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">JavaScript (React basics)</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="section-subtitle mb-3">Databases:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Stored Procedures</span>
+                        <span class="skill-tag">Functions</span>
+                        <span class="skill-tag">Indexing</span>
+                        <span class="skill-tag">Query Optimization</span>
+                        <span class="skill-tag">Database Design</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="section-subtitle mb-3">Tools & Technologies:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">AWS (Lambda, CloudWatch)</span>
+                        <span class="skill-tag">JWT Authentication</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Celery</span>
+                        <span class="skill-tag">Cron Jobs</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="section-subtitle mb-3">Development & Testing:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Swagger</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Visual Studio Code</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="section-subtitle mb-3">Soft Skills:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Problem-solving</span>
+                        <span class="skill-tag">Product Ownership</span>
+                        <span class="skill-tag">Agile Collaboration</span>
+                        <span class="skill-tag">Mentoring</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience Section -->
+        <section id="experience" class="container-section">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="job-title">Associate Software Engineer</h3>
+                    <p class="company-info">Equipo Health Inc. | Trivandrum, Kerala</p>
+                    <p class="duration-location mb-3">June 2022 – Present</p>
+                    <ul class="space-y-2 pl-6 text-gray-300 text-base leading-relaxed">
+                        <li class="bullet-point">Developed scalable and secure APIs using Django REST Framework and MySQL, enabling seamless integration with internal products and third-party services.</li>
+                        <li class="bullet-point">Built and maintained a web-based control panel/dashboard for internal teams using Django + React + MySQL, improving operational efficiency by 30%.</li>
+                        <li class="bullet-point">Engineered a centralized authentication service (JWT-based) used across multiple applications, reducing redundant codebases and enhancing security compliance.</li>
+                        <li class="bullet-point">Designed and deployed microservices architecture to simplify API integrations with external partners, improving development agility.</li>
+                        <li class="bullet-point">Spearheaded the IVR outbound call automation project using Python Django + Telnyx API, improving customer engagement via automated voice prompts.</li>
+                        <li class="bullet-point">Automated critical database operations using Python scripts + Cron Jobs, cutting manual workload by 50%.</li>
+                        <li class="bullet-point">Integrated custom Django middleware for advanced request/response logging, accelerating bug resolution and improving API observability.</li>
+                        <li class="bullet-point">Configured AWS CloudWatch for centralized exception logging, streamlining monitoring and troubleshooting workflows.</li>
+                        <li class="bullet-point">Dockerized applications for streamlined CI/CD deployments and enhanced scalability.</li>
+                        <li class="bullet-point">Developed core APIs for a patient-facing application (mobile & web), enabling patients to upload vitals, clinical documents, view appointments, consult e-consult requests, medication refills, insurance status, and chat with doctors.</li>
+                        <li class="bullet-point">Enabled real-time bi-directional synchronization of patient data between the patient-facing app and the AI-driven care management & coordination platform using REST APIs + AWS Lambda, ensuring seamless updates across both systems.</li>
+                        <li class="bullet-point">Engineered daily sync jobs in Python to ensure comprehensive data consistency between patient-facing and internal applications.</li>
+                        <li class="bullet-point">Developed and maintained the Patient Engagement Automation System to trigger personalized reminders (email/SMS/IVR) for appointments, medication refills, no-show follow-ups, care gap notifications, and other engagement types with configurable schedules and frequencies, improving patient retention and care compliance.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Projects Section (Important for a Backend Dev Portfolio!) -->
+            <section id="projects" class="container-section">
+                <h2 class="section-title">Projects</h2>
+                <div class="space-y-8">
+                    <!-- Example Project 1 -->
+                    <div class="project-card">
+                        <h3 class="project-title">Secure Microservices API Gateway</h3>
+                        <p class="project-meta">Python, Django REST Framework, JWT, Docker, AWS Lambda</p>
+                        <p class="project-description">
+                            Designed and implemented a robust API Gateway using Django REST Framework to manage and secure
+                            microservices communication. Integrated JWT-based authentication and authorization flows,
+                            enhancing overall system security and reducing latency by 15%. Dockerized the service for
+                            seamless deployment on AWS Lambda, ensuring high availability and scalability.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">View Code <span class="ml-1">&#8594;</span></a>
+                            <!-- Add a demo link if applicable, maybe a diagram or a video walkthrough for backend projects -->
+                            <!-- <a href="#" target="_blank">Live Demo <span class="ml-1">&#8594;</span></a> -->
+                        </div>
+                    </div>
+                    <!-- Example Project 2 (from your experience, elaborated for portfolio) -->
+                    <div class="project-card">
+                        <h3 class="project-title">Real-time Patient Data Sync Engine</h3>
+                        <p class="project-meta">Python, REST APIs, AWS Lambda, Celery, MySQL</p>
+                        <p class="project-description">
+                            Engineered a bi-directional data synchronization engine ensuring real-time consistency
+                            between a patient-facing application and an AI-driven care management platform. Utilized
+                            AWS Lambda for event-driven processing and Celery for asynchronous background tasks,
+                            handling high data volumes with zero data loss. Improved data latency by 20%.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Case Study/Details <span class="ml-1">&#8594;</span></a>
+                        </div>
+                    </div>
+                    <!-- Add more impactful projects here! -->
+                    <div class="project-card">
+                        <h3 class="project-title">Automated Healthcare Patient Engagement System</h3>
+                        <p class="project-meta">Python, Django, Cron Jobs, Email/SMS/IVR APIs</p>
+                        <p class="project-description">
+                            Developed and maintained a system to automate personalized patient reminders for appointments,
+                            medication refills, and care gap notifications. Configurable schedules and frequencies
+                            resulted in a significant improvement in patient retention and care compliance,
+                            directly impacting healthcare outcomes.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Learn More <span class="ml-1">&#8594;</span></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="container-section">
+                <h2 class="section-title">Education</h2>
+                <div>
+                    <h3 class="education-degree">Bachelor of Engineering (B.E.) in Computer Science and Engineering</h3>
+                    <p class="institute-info">SNS College of Engineering, Anna University | Coimbatore, Tamil Nadu</p>
+                    <p class="duration-location">2014 – 2018</p>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section id="certifications" class="container-section">
+                <h2 class="section-title">Certifications</h2>
+                <ul class="space-y-2 pl-6 text-gray-300 text-base leading-relaxed">
+                    <li class="bullet-point">SQL (Advanced) – HackerRank</li>
+                    <li class="bullet-point">API Security Fundamentals – APIsec University</li>
+                    <li class="bullet-point">Problem Solving (Intermediate) – HackerRank</li>
+                    <li class="bullet-point">Data Processing and Visualization – Accenture (via SSC NASSCOM)</li>
+                </ul>
+            </section>
+
+            <!-- Languages Section -->
+            <section id="languages" class="container-section">
+                <h2 class="section-title">Languages</h2>
+                <ul class="space-y-2 pl-6 text-gray-300 text-base leading-relaxed">
+                    <li class="bullet-point">English (Professional)</li>
+                    <li class="bullet-point">Malayalam (Native)</li>
+                    <li class="bullet-point">Tamil (Professional)</li>
+                </ul>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="container-section text-center">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="text-gray-300 mb-6 text-lg">
+                    I'm actively seeking Senior Python Developer roles with impactful projects and leadership opportunities.
+                    Let's connect and discuss how my backend expertise can drive your next success.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 text-gray-300 text-lg">
+                    <a href="mailto:varungopal309@gmail.com" class="contact-icon-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.003 5.884L10.333 11l-8.33 5.116zm0 12.232L10.333 13l-8.33 5.116zm0-14.116v12.232L22 12zm20 1.116l-11.667-7.116-10.333-6.002z" fill="currentColor"/></svg>
+                        varungopal309@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/varun-gopal" target="_blank" rel="noopener noreferrer" class="contact-icon-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor"/></svg>
+                        LinkedIn Profile
+                    </a>
+                    <span class="contact-icon-link">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c-4.418 0-8 3.582-8 8 0 2.051.815 3.92 2.146 5.302L3 21l5.5-2.5c.87.276 1.79.414 2.5.414 4.418 0 8-3.582 8-8s-3.582-8-8-8zm0 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z" fill="currentColor"/></svg>
+                         +91-8891108309
+                    </span>
+                </div>
+            </section>
+        </main>
+
+    <footer class="text-center">
+        <p>&copy; 2025 Varun Gopal. All rights reserved.</p>
+        <p class="text-xs mt-2">Crafted with a Backend Developer's precision.</p>
+    </footer>
+</body>
+</html>
